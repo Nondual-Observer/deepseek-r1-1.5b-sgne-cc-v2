@@ -7,6 +7,15 @@ authors:
     given-names: "Igor M."
 version: "2.0.0"
 date-released: "2026-11-20"
+doi: "10.5281/zenodo.24398165"
+url: "https://doi.org/10.5281/zenodo.24398165"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.24398165"
+    description: "Zenodo archive for v2.0.0"
+  - type: doi
+    value: "10.5281/zenodo.24398164"
+    description: "Zenodo Concept DOI (all versions)"
 repository-code: "https://github.com/Nondual-Observer/deepseek-r1-1.5b-sgne-cc-v2"
 license: "Apache-2.0"
 keywords:
