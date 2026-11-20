@@ -5,8 +5,8 @@
 **[Русская версия (README_RU.md)](README_RU.md)** · **[Full Paper (EN)](article/ARTICLE_EN.md)** · **[Полная статья (RU)](article/ARTICLE_RU.md)** · **[Datasets & Licenses](DATASETS_AND_LICENSES.md)**
 
 > **Version relationship (`v1` vs. `v2`):**  
-> - **`v1` (`Qwen3.5-0.8B`, hybrid `GatedDeltaNet + Attention`):** [`Nondual-Observer/dna-weight-editing`](https://github.com/Nondual-Observer/dna-weight-editing) · [DOI: `10.5281/zenodo.24235218`](https://doi.org/10.5281/zenodo.24235218) (`1,984` edited columns plus `1` gate row, `0.270%` of weights).  
-> - **`v2` (This repository — `DeepSeek-R1-Distill-Qwen-1.5B`, pure `SwiGLU` transformer):** [DOI: `10.5281/zenodo.24398165`](https://doi.org/10.5281/zenodo.24398165) (Concept DOI [`10.5281/zenodo.24398164`](https://doi.org/10.5281/zenodo.24398164)) · **`205` `mlp.down_proj` columns (`0.0177%` of weights)**, zero attention/gate/normalization/code edits, evaluated with a generation budget of **`32,768` new tokens** on `1,054` problems (`5` benchmarks, `5,270` total generated traces).
+> - **`v1` (`Qwen3.5-0.8B`, hybrid `GatedDeltaNet + Attention`):** [`Nondual-Observer/Qwen3.5-0.8B-SGNE-CC`](https://huggingface.co/Nondual-Observer/Qwen3.5-0.8B-SGNE-CC) · [`Nondual-Observer/dna-weight-editing`](https://github.com/Nondual-Observer/dna-weight-editing) · [DOI: `10.5281/zenodo.24235218`](https://doi.org/10.5281/zenodo.24235218) (`1,984` edited columns plus `1` gate row, `0.270%` of weights).  
+> - **`v2` (This repository — `DeepSeek-R1-Distill-Qwen-1.5B`, pure `SwiGLU` transformer):** **[`Nondual-Observer/DeepSeek-R1-Distill-Qwen-1.5B-SGNE-CC-v2`](https://huggingface.co/Nondual-Observer/DeepSeek-R1-Distill-Qwen-1.5B-SGNE-CC-v2)** · [DOI: `10.5281/zenodo.24398165`](https://doi.org/10.5281/zenodo.24398165) (Concept DOI [`10.5281/zenodo.24398164`](https://doi.org/10.5281/zenodo.24398164)) · **`205` `mlp.down_proj` columns (`0.0177%` of weights)**, zero attention/gate/normalization/code edits, evaluated with a generation budget of **`32,768` new tokens** on `1,054` problems (`5` benchmarks, `5,270` total generated traces).
 
 ---
 
