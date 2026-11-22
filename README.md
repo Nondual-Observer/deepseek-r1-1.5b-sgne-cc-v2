@@ -57,11 +57,19 @@ python3 patch/apply_sgne_cc_v2_205_to_safetensors.py \
 
 ---
 
+## Independent Replications & Audits
+
+- **Per-problem `shared-rows` recount (`Human-AI-Evolution` / `@HedonismJesse`):** independently joined and recounted all five `MATH-500` runs in [`traces/shared_rows/`](traces/shared_rows/) ([discussion #4](https://github.com/RikiyaT/lm_understand-logs/issues/4#issuecomment-7085628487)), confirming every published count (`75.2%` strict boxed / `76.4%` lenient at `T = 0`, `+70/-21` strict) and showing that `SGNE-CC v2` converts surviving mid-trace loops from terminal failures (`138/141` unclosed in Base at `T = 0`) into mostly recoverable loops (`37/52` closed at `T = 0`, `25/29` at `T = 0.3`).
+- **Companion `SGNE-CC v1` (`Qwen3.5-0.8B`) independent replications:** evaluated on `llama.cpp` by Dave Uhlemann in *Knowing Is Not Committing v0.5*, Sections 3.13–3.14 ([DOI: 10.5281/zenodo.24420522](https://doi.org/10.5281/zenodo.24420522), [repo](https://github.com/NeoCortex0815/knowing-is-not-committing)), and on Hugging Face `transformers` with a 5-arm component ablation by `Human-AI-Evolution` ([`weight-space-notes`](https://github.com/Human-AI-Evolution/weight-space-notes), [discussion #4](https://github.com/RikiyaT/lm_understand-logs/issues/4#issuecomment-7062726129)), confirming that removing the single `L16` decay-gate row does not reduce accuracy (`147/300` vs. `143/300`).
+- **Curated catalogs:** indexed in [`Boom5426/Awesome-Weight-Space-Programming`](https://github.com/Boom5426/Awesome-Weight-Space-Programming) and [`SajjadPSavoji/awesome-weight-space-programming`](https://github.com/SajjadPSavoji/awesome-weight-space-programming).
+
+---
+
 ## Repository Structure
 
 - `article/` — [`ARTICLE_EN.md`](article/ARTICLE_EN.md) and [`ARTICLE_RU.md`](article/ARTICLE_RU.md)
 - `patch/` — [`FINAL_SGNE_CC_V2_205_PATCH.npz`](patch/FINAL_SGNE_CC_V2_205_PATCH.npz) (`205` `mlp.down_proj` columns) and [`apply_sgne_cc_v2_205_to_safetensors.py`](patch/apply_sgne_cc_v2_205_to_safetensors.py)
 - `cards/` — `14` publication figure cards (`01..07`, EN & RU)
 - `datasets/` — `4` non-math benchmark JSON datasets + [`math500_ids_manifest.json`](datasets/math500_ids_manifest.json) (`unique_id` + `prompt_sha256` without raw `MATH-500` texts; see [`DATASETS_AND_LICENSES.md`](DATASETS_AND_LICENSES.md))
-- `traces/` — `20` raw `65_REAL32K_*.jsonl` non-math trace files + [`math500_per_item_results.json`](traces/math500_per_item_results.json) (`2,500` `MATH-500` per-item scores, token counts, and `text_sha256` digests without raw problem texts; `5,270` total records)
+- `traces/` — `20` raw `65_REAL32K_*.jsonl` non-math trace files + [`math500_per_item_results.json`](traces/math500_per_item_results.json) (`2,500` `MATH-500` per-item scores, token counts, and `text_sha256` digests without raw problem texts; `5,270` total records) + [`shared_rows/`](traces/shared_rows/) (`5` `MATH-500` runs in cross-lab `shared-rows` JSONL format)
 - `verification/` — [`SHA256_MANIFEST.json`](verification/SHA256_MANIFEST.json), [`SHA256_AND_METRICS_CERTIFICATE.json`](verification/SHA256_AND_METRICS_CERTIFICATE.json), and [`verify_repo_integrity.py`](verification/verify_repo_integrity.py)
