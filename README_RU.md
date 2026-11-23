@@ -2,11 +2,12 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24398165.svg)](https://doi.org/10.5281/zenodo.24398165)
 
-**[English version (README.md)](README.md)** · **[Полная статья (RU)](article/ARTICLE_RU.md)** · **[Full Paper (EN)](article/ARTICLE_EN.md)** · **[Наборы данных и лицензии](DATASETS_AND_LICENSES.md)**
+**[English version (README.md)](README.md)** · **[Полная статья (RU)](article/ARTICLE_RU.md)** · **[Full Paper (EN)](article/ARTICLE_EN.md)** · **[Наборы данных и лицензии](DATASETS_AND_LICENSES.md)** · **Автор:** И. М. Жук ([ORCID 0009-0003-1670-8388](https://orcid.org/0009-0003-1670-8388))
 
-> **Связь версий (`v1` и `v2`):**  
+> **Связь версий (`v1` и `v2`) и теоретическая основа (ТНР):**  
 > - **`v1` (`Qwen3.5-0.8B`, гибрид `GatedDeltaNet + Attention`):** [`Nondual-Observer/Qwen3.5-0.8B-SGNE-CC`](https://huggingface.co/Nondual-Observer/Qwen3.5-0.8B-SGNE-CC) · [`Nondual-Observer/dna-weight-editing`](https://github.com/Nondual-Observer/dna-weight-editing) · [DOI: `10.5281/zenodo.24235218`](https://doi.org/10.5281/zenodo.24235218) (`1 984` изменённых столбца и `1` строка ворот, `0.270%` весов).  
-> - **`v2` (Данный репозиторий — `DeepSeek-R1-Distill-Qwen-1.5B`, чистый `SwiGLU`-трансформер):** **[`Nondual-Observer/DeepSeek-R1-Distill-Qwen-1.5B-SGNE-CC-v2`](https://huggingface.co/Nondual-Observer/DeepSeek-R1-Distill-Qwen-1.5B-SGNE-CC-v2)** · [DOI: `10.5281/zenodo.24398165`](https://doi.org/10.5281/zenodo.24398165) (Concept DOI [`10.5281/zenodo.24398164`](https://doi.org/10.5281/zenodo.24398164)) · **`205` столбцов `mlp.down_proj` (`0.0177%` весов)**, ноль изменений внимания, ворот, нормировок и кода инференса; проверка при бюджете **`32 768` новых токенов** на `1 054` задачах (`5` бенчмарков, `5 270` трасс).
+> - **`v2` (Данный репозиторий — `DeepSeek-R1-Distill-Qwen-1.5B`, чистый `SwiGLU`-трансформер):** **[`Nondual-Observer/DeepSeek-R1-Distill-Qwen-1.5B-SGNE-CC-v2`](https://huggingface.co/Nondual-Observer/DeepSeek-R1-Distill-Qwen-1.5B-SGNE-CC-v2)** · [DOI: `10.5281/zenodo.24398165`](https://doi.org/10.5281/zenodo.24398165) (Concept DOI [`10.5281/zenodo.24398164`](https://doi.org/10.5281/zenodo.24398164)) · **`205` столбцов `mlp.down_proj` (`0.0177%` весов)**, ноль изменений внимания, ворот, нормировок и кода инференса; проверка при бюджете **`32 768` новых токенов** на `1 054` задачах (`5` бенчмарков, `5 270` трасс).  
+> - **Теоретическая основа (ТНР):** *Теория Наблюдаемого Различения (ТНР)* ([`Nondual-Observer/DOTheory`](https://github.com/Nondual-Observer/DOTheory/blob/main/README_RU.md) · [Zenodo Concept DOI: `10.5281/zenodo.23481643`](https://doi.org/10.5281/zenodo.23481643)).
 
 ---
 
@@ -57,11 +58,19 @@ python3 patch/apply_sgne_cc_v2_205_to_safetensors.py \
 
 ---
 
+## Независимые проверки и аудит
+
+- **Позадачный пересчёт `shared-rows` (`Human-AI-Evolution` / `@HedonismJesse`):** независимый разбор всех пяти прогонов `MATH-500` из [`traces/shared_rows/`](traces/shared_rows/) ([обсуждение #4](https://github.com/RikiyaT/lm_understand-logs/issues/4#issuecomment-7085628487)) подтвердил все опубликованные числа (`75.2%` строго по `\boxed{}` / `76.4%` мягко при `T = 0`, `+70/−21` строго) и показал, что `SGNE-CC v2` переводит оставшиеся петли из терминальных зависаний (`138/141` незакрытых у базы при `T = 0`) в преимущественно обратимые (`37/52` закрываются при `T = 0`, `25/29` при `T = 0.3`).
+- **Независимые проверки `SGNE-CC v1` (`Qwen3.5-0.8B`):** проверка на `llama.cpp` Дэйва Улеманна в *Knowing Is Not Committing v0.5*, разделы 3.13–3.14 ([DOI: 10.5281/zenodo.24420522](https://doi.org/10.5281/zenodo.24420522), [репозиторий](https://github.com/NeoCortex0815/knowing-is-not-committing)) и 5-рукавная абляция на `transformers` от `Human-AI-Evolution` ([`weight-space-notes`](https://github.com/Human-AI-Evolution/weight-space-notes), [обсуждение #4](https://github.com/RikiyaT/lm_understand-logs/issues/4#issuecomment-7062726129)).
+- **Обзорные каталоги:** включено в [`Boom5426/Awesome-Weight-Space-Programming`](https://github.com/Boom5426/Awesome-Weight-Space-Programming) и [`SajjadPSavoji/awesome-weight-space-programming`](https://github.com/SajjadPSavoji/awesome-weight-space-programming).
+
+---
+
 ## Состав репозитория
 
 - `article/` — [`ARTICLE_RU.md`](article/ARTICLE_RU.md) и [`ARTICLE_EN.md`](article/ARTICLE_EN.md)
 - `patch/` — [`FINAL_SGNE_CC_V2_205_PATCH.npz`](patch/FINAL_SGNE_CC_V2_205_PATCH.npz) (`205` столбцов `mlp.down_proj`) и [`apply_sgne_cc_v2_205_to_safetensors.py`](patch/apply_sgne_cc_v2_205_to_safetensors.py)
 - `cards/` — `14` публикационных карточек (`01..07`, EN и RU)
 - `datasets/` — `4` нематематических набора в JSON + [`math500_ids_manifest.json`](datasets/math500_ids_manifest.json) (`unique_id` + `prompt_sha256` без текстов условий `MATH-500`; см. [`DATASETS_AND_LICENSES.md`](DATASETS_AND_LICENSES.md))
-- `traces/` — `20` нематематических файлов `65_REAL32K_*.jsonl` + [`math500_per_item_results.json`](traces/math500_per_item_results.json) (`2 500` построчных оценок, счётчиков токенов и `text_sha256` для `MATH-500` без текстов условий; всего `5 270` записей)
+- `traces/` — `20` нематематических файлов `65_REAL32K_*.jsonl` + [`math500_per_item_results.json`](traces/math500_per_item_results.json) (`2 500` построчных оценок, счётчиков токенов и `text_sha256` для `MATH-500` без текстов условий; всего `5 270` записей) + [`shared_rows/`](traces/shared_rows/) (`5` прогонов `MATH-500` в кросс-лабораторном формате `shared-rows` JSONL)
 - `verification/` — [`SHA256_MANIFEST.json`](verification/SHA256_MANIFEST.json), [`SHA256_AND_METRICS_CERTIFICATE.json`](verification/SHA256_AND_METRICS_CERTIFICATE.json) и [`verify_repo_integrity.py`](verification/verify_repo_integrity.py)
